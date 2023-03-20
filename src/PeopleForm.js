@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useForm, reset } from 'react-hook-form';
+// import React, { useState, useEffect } from "react";
+import { useForm } from 'react-hook-form';
 
 const PeopleForm = ({ kisiler, submitFn, notify }) => {
    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({

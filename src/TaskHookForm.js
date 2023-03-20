@@ -1,6 +1,6 @@
 import React from "react";
 import { nanoid } from "nanoid";
-import { useForm, reset } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
 // import * as Yup from "yup";
 
 
