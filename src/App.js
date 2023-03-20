@@ -32,11 +32,13 @@ function App() {
     setTeam([...team, yeniKisi])
   }
 
-  function handleComplete(id) {
+  function handleComplete(p) {
     console.log("tamamlama fonksiyonunu buraya yazın")
-    // const completedTask= tasks.find((e)=>{e.id===id})
-    // completedTask.status = "yapıldı"
-
+    const newTaskList = [...tasks];
+    const completedTasks = tasks.filter((e)=>e.id===p);
+    completedTasks[0].status = "yapıldı";
+    setTasks(newTaskList);
+    notify(`${completedTasks[0].title} tamamlandı!`);
   }
 
   return (
