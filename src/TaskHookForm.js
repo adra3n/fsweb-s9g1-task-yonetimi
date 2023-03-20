@@ -18,7 +18,7 @@ import { useForm, reset } from 'react-hook-form';
 
 export default function TaskHookForm( { kisiler, submitFn }) {
     const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({
-      mode:'all', defaultValues:{
+      mode:"onChange", defaultValues:{
       title:"",
       aciklama:"",
       people:[],
@@ -130,12 +130,13 @@ export default function TaskHookForm( { kisiler, submitFn }) {
         <input
           className="input-text"
           id="title"
-           {...register("title",{required:"Task başlığı yazmalısınız",min:{value:3, message:"Task başlığı en az 3 karakter olmalı" }})}
+           {...register("title",{required:"Task başlığı yazmalısınız",minLength:{value:3, message:"Task başlığı en az 3 karakter olmalı" }})}
           type="text"
         //   onChange={handleOthersChange}
         //   value={formData.title}
         />
         {/* <p className="input-error">{formErrors.title}</p> */}
+        {errors.title && <p className="input-error">{errors.title?.message}</p>}
       </div>
 
       <div className="form-line">
@@ -146,10 +147,11 @@ export default function TaskHookForm( { kisiler, submitFn }) {
           className="input-textarea"
           rows="3"
           id="description"
-             {...register("description",{required:"Task açıklaması yazmalısınız",min:{value:10, message:"Task açıklaması en az 10 karakter olmalı" }})}
+             {...register("description",{required:"Task açıklaması yazmalısınız",minLength:{value:10, message:"Task açıklaması en az 10 karakter olmalı" }})}
 
         ></textarea>
         {/* <p className="input-error">{formErrors.description}</p> */}
+         {errors.description && <p className="input-error">{errors.description?.message}</p>}
       </div>
 
       <div className="form-line">
@@ -159,7 +161,7 @@ export default function TaskHookForm( { kisiler, submitFn }) {
             <label className="input-checkbox" key={p}>
               <input
                 type="checkbox"
-                {...register("people",{max:{value:3, message:"En fazla 3 kişi seçebilirsiniz"},required:"Lütfen en az bir kişi seçin"})}
+                {...register("people",{maxLength:{value:3, message:"En fazla 3 kişi seçebilirsiniz"},required:"Lütfen en az bir kişi seçin"})}
                 value={p}
                 // onChange={handleCheckboxChange}
                 // checked={formData.people.includes(p)}
@@ -168,7 +170,7 @@ export default function TaskHookForm( { kisiler, submitFn }) {
             </label>
           ))}
         </div>
-        {/* <p className="input-error">{formErrors.people}</p> */}
+         {errors.people && <p className="input-error">{errors.people?.message}</p>}
       </div>
 
       <div className="form-line">
