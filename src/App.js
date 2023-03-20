@@ -14,8 +14,8 @@ import "./app.css";
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    progress: 0.4,
-    theme: "dark",
+    progress: undefined,
+    theme: "light",
     })};
 
 
@@ -53,7 +53,7 @@ function App() {
 
         <div className="form-container">
           <h2>Yeni Kişi</h2>
-          <PeopleForm kisiler={team} submitFn={handlePeopleSubmit} />
+          <PeopleForm kisiler={team} submitFn={handlePeopleSubmit} notify={notify} />
         </div>
       </div>
       <div className="columns">
