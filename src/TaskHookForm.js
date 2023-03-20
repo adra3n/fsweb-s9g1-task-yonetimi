@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 import { useForm, reset } from 'react-hook-form';
 // import * as Yup from "yup";
 
+
+
 // const formSemasi = Yup.object().shape({
 //   title: Yup.string()
 //     .required("Task başlığı yazmalısınız")
@@ -16,7 +18,7 @@ import { useForm, reset } from 'react-hook-form';
 // });
 
 
-export default function TaskHookForm( { kisiler, submitFn }) {
+export default function TaskHookForm( { kisiler, submitFn, notify }) {
     const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({
       mode:"onChange", defaultValues:{
       title:"",
@@ -30,7 +32,7 @@ export default function TaskHookForm( { kisiler, submitFn }) {
     console.log("err>",errors);
     submitFn({...data, id:nanoid(5),status:"yapılacak"});
     reset();
-    
+    notify(`${data.title} yapılacaklara eklendi!`)
     //   submitFn({
     //         ...formData,
     //   id: nanoid(5),
@@ -147,7 +149,8 @@ export default function TaskHookForm( { kisiler, submitFn }) {
           className="input-textarea"
           rows="3"
           id="description"
-             {...register("description",{required:"Task açıklaması yazmalısınız",minLength:{value:10, message:"Task açıklaması en az 10 karakter olmalı" }})}
+             {...register("description",{required:"Task açıklaması yazmalısınız",
+             minLength:{value:10, message:"Task açıklaması en az 10 karakter olmalı" }})}
 
         ></textarea>
         {/* <p className="input-error">{formErrors.description}</p> */}
